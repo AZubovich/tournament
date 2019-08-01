@@ -34,4 +34,8 @@ RSpec.describe User, type: :model do
     user2 = User.new(email: 'oppgn.ru', password: nil)
     expect(user2).to_not be_valid
   end
+  it 'User with FactoryBot' do
+    user4 = create(:user)
+    expect(user4.email).to eq('z@m.ru')
+  end
 end
