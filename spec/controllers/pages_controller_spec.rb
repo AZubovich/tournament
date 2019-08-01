@@ -25,4 +25,15 @@ RSpec.describe PagesController, type: :controller do
       response.should be_success
     end
   end
+
+  describe 'sign_in and aign_out process'
+    it 'signs user in and out' do
+      user = create(:user)
+      sign_in user
+      get :profile
+      expect(response).to render_template(:profile)
+      sign_out user
+      get :profile
+      expect(response).to render_template(:profile)
+    end
 end
