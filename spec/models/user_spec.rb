@@ -25,18 +25,8 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   it 'User should be valid' do
-    user = User.new(email: 'opp@gn.ru', password: '123456')
+    user = create(:user)
     expect(user).to be_valid
-  end
-
-  it 'User should be invalid(not a email)' do
-    user1 = User.new(email: 'oppgn.ru', password: '123456')
-    expect(user1).to_not be_valid
-  end
-
-  it 'User should be invalid(password blank)' do
-    user2 = User.new(email: 'oppgn.ru', password: nil)
-    expect(user2).to_not be_valid
   end
   it 'User with FactoryBot' do
     user4 = create(:user)
