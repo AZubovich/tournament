@@ -1,18 +1,15 @@
 module Types
   class MutationType < Types::BaseObject
-    field :enter, UserType, null: true do
-      description 'Sign_in for users'
-      argument :email, String, required: true
-      argument :password, String, required: true
-    end
-    def enter(email:, password:)
-      user = User.find_for_authentication(email: email)
-      return nil if !user
+    field :login, mutation: Mutations::Login
+    field :sign_up, mutation: Mutations::SignUp
+    field :logout, mutation: Mutations::Logout
 
-      is_valid_for_auth = user.valid_for_authentication?{
-        user.valid_password?(password)
-      }
-      return is_valid_for_auth ? user : nil
+    field :github, UserType, null: true do
+      description 'registrate with GitHub'
+    end
+
+    def github
+      User.from_omniauth(context[:request].env['omniauth.auth'])
     end
   end
 end
