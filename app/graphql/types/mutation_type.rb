@@ -3,6 +3,7 @@ module Types
     field :login, mutation: Mutations::Login
     field :sign_up, mutation: Mutations::SignUp
     field :logout, mutation: Mutations::Logout
+    field :simple, mutation: Mutations::Simple
 
     field :github, UserType, null: true do
       description 'registrate with GitHub'
