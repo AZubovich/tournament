@@ -5,7 +5,7 @@ module Mutations
 
     type Types::UserType
 
-    def resolve(email: nil, password: nil)
+    def resolve(email:, password:)
       user = User.find_for_authentication(email: email)
       return nil if !user
 
