@@ -14,12 +14,5 @@ module Types
     def users
       User.all
     end
-
-    field :first, UserType, null: false,
-    description: 'fetch first user'
-
-    def first
-      User.first
-    end
   end
 end
