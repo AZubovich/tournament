@@ -3,19 +3,21 @@ module Mutations
     argument :email, String, required: true
     argument :password, String, required: true
 
-    type Types::UserType
-
+    field :user, Types::UserType, null: true
+    field :token, Integer, null: true
+    
     def resolve(email:, password:)
-      puts "Before login #{context[:session][:user]}"
+      puts "Before login #{context[:session][:token]}"
       user = User.find_for_authentication(email: email)
       return nil if !user
 
       is_valid_for_auth = user.valid_for_authentication?{
         user.valid_password?(password)
       }
-      context[:session][:user] = user.id if is_valid_for_auth
-      puts context[:session][:user]
-      return is_valid_for_auth ? user : nil
+      context[:session][:token] = user.id if is_valid_for_auth
+      puts "After login #{context[:session][:token]}"
+      return nil unless is_valid_for_auth
+      { user: user, token: context[:session][:token] }
     end
   end
 end

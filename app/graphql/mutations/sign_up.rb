@@ -4,7 +4,8 @@ module Mutations
     argument :password, String, required: true
     argument :passwordConfirmation, String, required: true
 
-    type Types::UserType
+    field :user, Types::UserType, null: true
+    field :token, Integer, null: true
 
     def resolve(email:, password:, password_confirmation:)
       nick_name = context[:nickname]
@@ -14,8 +15,8 @@ module Mutations
         password_confirmation: password_confirmation,
         nick_name: nick_name
       )
-      context[:session][:user] = user.id
-      user
+      context[:session][:token] = user.id
+      { user: user, token: context[:session][:token] }
     end
   end
 end

@@ -20,7 +20,7 @@ class GraphqlController < ApplicationController
   private
   
   def current_user
-    User.find_by(id: session[:user])
+    User.find_by(id: session[:token])
   end
 
   def generate_nick_name

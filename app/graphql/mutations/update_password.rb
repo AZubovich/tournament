@@ -3,7 +3,8 @@ module Mutations
     argument :password, String, required: true
     argument :passwordConfirmation, String, required: true
     
-    type Types::UserType
+    #type Types::UserType
+    field :user, Types::UserType, null: true
 
     def resolve(password:, password_confirmation:)
       user = context[:current_user]
@@ -11,7 +12,7 @@ module Mutations
         password: password,
         password_confirmation: password_confirmation
       )
-      user
+      { user: user }
     end
   end
 end
