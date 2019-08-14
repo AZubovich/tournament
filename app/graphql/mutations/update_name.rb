@@ -7,6 +7,7 @@ module Mutations
     def resolve(nick_name:)
       puts "Its context[:session] #{context[:session]}"
       user = Current.user
+      puts user
       user = user.update(
         nick_name: nick_name
       )

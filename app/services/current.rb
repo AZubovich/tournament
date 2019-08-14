@@ -5,15 +5,16 @@ module Current
     end
 
     define_singleton_method(:"#{attribute_name}=") do |value|
-      store[attribute_name] = value
+      #store[attribute_name] = value
     end
   end
 
   attribute :user
+  class << self
+	  private
 
-  private
-
-  def store
-    RequestStore.store
+	  def store
+	    RequestStore.store
+	  end
   end
 end
