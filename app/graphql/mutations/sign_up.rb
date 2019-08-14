@@ -15,8 +15,9 @@ module Mutations
         password_confirmation: password_confirmation,
         nick_name: nick_name
       )
-      context[:session][:token] = user.id
-      { user: user, token: context[:session][:token] }
+      token = user.id
+      context[:session][:token] = token
+      { user: user, token: token }
     end
   end
 end

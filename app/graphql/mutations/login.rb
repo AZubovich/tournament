@@ -7,17 +7,19 @@ module Mutations
     field :token, Integer, null: true
     
     def resolve(email:, password:)
-      puts "Before login #{context[:session][:token]}"
+      puts "Before login #{context[:session][:current_user_id]}"
       user = User.find_for_authentication(email: email)
       return nil if !user
 
       is_valid_for_auth = user.valid_for_authentication?{
         user.valid_password?(password)
       }
-      context[:session][:token] = user.id if is_valid_for_auth
-      puts "After login #{context[:session][:token]}"
+      if is_valid_for_auth
+        Current.user = user
+      end
+      puts "After login #{context[:session][:current_user_id]}"
       return nil unless is_valid_for_auth
-      { user: user, token: context[:session][:token] }
+      { user: user, token: user.id }
     end
   end
 end

@@ -7,6 +7,8 @@ class GraphqlController < ApplicationController
     context = {
       # Query context goes here, for example:
       current_user: current_user,
+      sign_in: ->(user) { sign_in(user) },
+      sign_out: ->(user) { sign_out(user) },
       session: session,
       nickname: generate_nick_name
     }
@@ -20,7 +22,8 @@ class GraphqlController < ApplicationController
   private
   
   def current_user
-    User.find_by(id: session[:token])
+    return unless session[:current_user_id]
+    User.find_by(id: session[:current_user_id])
   end
 
   def generate_nick_name
