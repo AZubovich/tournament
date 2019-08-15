@@ -4,10 +4,9 @@ module Mutations
     argument :password, String, required: true
 
     field :user, Types::UserType, null: true
-    field :token, Integer, null: true
+    field :token, String, null: true
     
     def resolve(email:, password:)
-      puts "Before login #{context[:session][:current_user_id]}"
       user = User.find_for_authentication(email: email)
       return nil if !user
 
@@ -15,11 +14,12 @@ module Mutations
         user.valid_password?(password)
       }
       if is_valid_for_auth
-        Current.user = user
+        crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))
+        token = crypt.encrypt_and_sign("user-id:#{ user.id }")
+        context[:session][:token] = token
       end
-      puts "After login #{context[:session][:current_user_id]}"
       return nil unless is_valid_for_auth
-      { user: user, token: user.id }
+      { user: user, token: token }
     end
   end
 end

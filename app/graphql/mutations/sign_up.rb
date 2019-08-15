@@ -5,7 +5,7 @@ module Mutations
     argument :passwordConfirmation, String, required: true
 
     field :user, Types::UserType, null: true
-    field :token, Integer, null: true
+    field :token, String, null: true
 
     def resolve(email:, password:, password_confirmation:)
       nick_name = context[:nickname]
@@ -15,8 +15,10 @@ module Mutations
         password_confirmation: password_confirmation,
         nick_name: nick_name
       )
-      token = user.id
+      crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))
+      token = crypt.encrypt_and_sign("user-id:#{user.id}")
       context[:session][:token] = token
+      puts token
       { user: user, token: token }
     end
   end
