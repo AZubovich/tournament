@@ -27,5 +27,6 @@ FactoryBot.define do
     sequence(:email) { 'example@m.ru' }
     sequence(:password) { '123456' }
     sequence(:password_confirmation) { '123456' }
+    sequence(:nick_name) { 'exampleName' }
   end
 end
