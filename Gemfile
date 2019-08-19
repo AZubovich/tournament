@@ -14,6 +14,10 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
+# Use devise for create a user model
+gem 'devise'
+# Use devise-jwt tokens to authentication
+gem 'devise-jwt', '~> 0.5.9'
 # gem 'mini_racer', platforms: :ruby
 # User can login from GitHub
 gem 'omniauth-github'
@@ -29,6 +33,9 @@ gem 'graphql'
 gem 'rails-controller-testing'
 # Use for cors problem with apolloql
 gem 'rack-cors'
+# Per-thread & per-request globally accessible storage
+gem 'request_store'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -48,10 +55,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   # Use FactoryBot to test your application
   gem 'factory_bot_rails'
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'rspec-rails', '~> 3.8'
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'rspec-rails', '~> 3.8'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
@@ -76,7 +79,11 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
+  #Seed data generator
+  gem 'faker'
   gem 'selenium-webdriver'
+  # Clean your test db
+  gem 'database_cleaner'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 end

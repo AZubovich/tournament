@@ -6,6 +6,7 @@
 #  admin                  :boolean
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  nick_name              :string
 #  provider               :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime

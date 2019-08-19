@@ -1,6 +1,12 @@
 module Types
   class QueryType < Types::BaseObject
-    field :profile, UserType, null: false,
+
+     field :users, resolver: Queries::Users
+
+
+
+    field :profile, UserType, null: true,
+
     description: 'profile using'
 
     def profile

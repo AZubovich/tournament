@@ -3,15 +3,9 @@ module Types
     field :login, mutation: Mutations::Login
     field :sign_up, mutation: Mutations::SignUp
     field :logout, mutation: Mutations::Logout
-    field :simple, mutation: Mutations::Simple
+    field :update_email, mutation: Mutations::UpdateEmail
+    field :update_name, mutation: Mutations::UpdateName
+    field :update_password, mutation: Mutations::UpdatePassword
 
-
-    field :github, UserType, null: true do
-      description 'registrate with GitHub'
-    end
-
-    def github
-      User.from_omniauth(context[:request].env['omniauth.auth'])
-    end
   end
 end
