@@ -3,7 +3,6 @@ module Mutations
     type Boolean
 
     def resolve
-     
       false
     end
   end

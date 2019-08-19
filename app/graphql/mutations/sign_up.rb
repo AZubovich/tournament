@@ -4,6 +4,7 @@ module Mutations
     argument :password, String, required: true
     argument :passwordConfirmation, String, required: true
 
+
     field :user, Types::UserType, null: true
     field :token, String, null: true
 
@@ -19,6 +20,7 @@ module Mutations
       token = crypt.encrypt_and_sign("user-id:#{user.id}")
       context[:session][:token] = token
       { user: user, token: token }
+
     end
   end
 end

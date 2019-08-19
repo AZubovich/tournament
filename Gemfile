@@ -35,6 +35,7 @@ gem 'rails-controller-testing'
 gem 'rack-cors'
 # Per-thread & per-request globally accessible storage
 gem 'request_store'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
