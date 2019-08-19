@@ -6,7 +6,6 @@ module Mutations
     #type Types::UserType
     
     def resolve(nick_name:, token:)
-      puts token
       #user = context[:current_user]
       crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))
       tokenize = crypt.decrypt_and_verify token

@@ -2,19 +2,12 @@ require 'rails_helper'
 module Mutations
   RSpec.describe UpdateEmail, type: :request do
     describe '.resolve' do
-
+        let(:user) { create(:user)}
         it 'returns a user' do
-          
-
+          user.reload
           post '/graphql', params: { query: update_query }
-
-          json = JSON.parse(response.body)
-          data = json['data']['updateEmail']['user']
-
-          expect(data).to include(
-            'id'              => "11",
-            'email'           => "example@m.ru"
-           )
+          user.reload
+          expect(user.email).to eq("ex@m.ru")
         end
     end
 
@@ -22,8 +15,8 @@ module Mutations
       <<~GQL
         mutation {
           updateEmail(
-            email: "example@m.ru"
-            token: "vSN6jWcHYjJXPqt05RUd+GhlrTI=--91+2faveMpyasHs0--hm0/65vBpK7Xv4XA/9pWUg=="
+            email: "ex@m.ru"
+            token: "vZX+tfA6rJbo2J8yG6OcrFuGGw==--U2l6JDjLX7SUiR7i--+X6oILQ8a+WzLKDDt3LaiA=="
           ) {
             user{
               id

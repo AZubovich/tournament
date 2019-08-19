@@ -5,6 +5,7 @@ module Mutations
         it 'invalid inputs has null data' do
           #user = create(:user)
           post '/graphql', params: { query: invalid_query }
+          
           json = JSON.parse(response.body)
           data = json['data']
           expect(data).to equal(nil)

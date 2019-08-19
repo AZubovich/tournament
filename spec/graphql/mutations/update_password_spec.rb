@@ -2,20 +2,13 @@ require 'rails_helper'
 module Mutations
   RSpec.describe UpdateEmail, type: :request do
     describe '.resolve' do
-
+      let(:user) { create(:user)}
         it 'returns a user' do
-          
-
+          user.reload
           post '/graphql', params: { query: update_query }
-
-          json = JSON.parse(response.body)
-          data = json['data']['updatePassword']['user']
-
-          expect(data).to include(
-            'id'              => "11",
-            'email'           => "expl@m.ru"
-           )
-        end
+          user.reload
+          expect(user.password).to eq("654321")
+        end       
     end
 
 
@@ -23,9 +16,9 @@ module Mutations
       <<~GQL
         mutation {
           updatePassword(
-            password: "111111"
-            passwordConfirmation: "111111"
-            token: "vSN6jWcHYjJXPqt05RUd+GhlrTI=--91+2faveMpyasHs0--hm0/65vBpK7Xv4XA/9pWUg=="
+            password: "654321"
+            passwordConfirmation: "654321"
+            token: "vZX+tfA6rJbo2J8yG6OcrFuGGw==--U2l6JDjLX7SUiR7i--+X6oILQ8a+WzLKDDt3LaiA=="
           ) {
             user{
               id
