@@ -6,6 +6,6 @@ module Types
     field :update_email, mutation: Mutations::UpdateEmail
     field :update_name, mutation: Mutations::UpdateName
     field :update_password, mutation: Mutations::UpdatePassword
-
+    field :create_tournament, mutation: Mutations::CreateTournament
   end
 end
