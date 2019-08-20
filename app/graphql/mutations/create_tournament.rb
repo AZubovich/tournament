@@ -1,7 +1,7 @@
 module Mutations
   class CreateTournament < BaseMutation
     argument :title, String, required: true
-    argument :description, String, required: false
+    argument :description, String, required: true
     argument :prize, String, required: true
     argument :token, String, required: true
 
