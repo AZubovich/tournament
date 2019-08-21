@@ -21,9 +21,9 @@
 
 FactoryBot.define do
   factory :tournament do
-    name { "MyString" }
-    description { "MyText" }
+    name { "MyName" }
+    description { "MyDescription" }
     prize { 1 }
-    user { nil }
+    user { create(:user) }
   end
 end

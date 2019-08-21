@@ -8,7 +8,7 @@ module Types
     field :update_password, mutation: Mutations::UpdatePassword
     field :update_admin, mutation: Mutations::UpdateAdmin
     field :create_tournament, mutation: Mutations::CreateTournament
-    field :update_tournament, mutation: Mutations::UpdateTournament
+    field :edit_tournament, mutation: Mutations::EditTournament
     field :delete_tournament, mutation: Mutations::DeleteTournament
   end
 end
