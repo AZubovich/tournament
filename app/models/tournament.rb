@@ -4,6 +4,8 @@
 #
 #  id          :bigint           not null, primary key
 #  description :text
+#  kind        :string
+#  limit       :integer
 #  name        :string
 #  prize       :integer
 #  created_at  :datetime         not null
@@ -24,4 +26,6 @@ class Tournament < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
   validates :prize, presence: true
+  validates :kind, presence: true
+  validates :limit, presence: true
 end

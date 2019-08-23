@@ -4,6 +4,8 @@
 #
 #  id          :bigint           not null, primary key
 #  description :text
+#  kind        :string
+#  limit       :integer
 #  name        :string
 #  prize       :integer
 #  created_at  :datetime         not null
