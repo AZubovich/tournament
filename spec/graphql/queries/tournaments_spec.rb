@@ -3,6 +3,7 @@ require 'rails_helper'
 module Queries
   RSpec.describe Tournaments, type: :request do
     describe '.resolve' do
+      let(:schema) { GraphQL::BackendSchema }
       it 'returns all users' do
         author = create(:user, email: 'first@m.ru', password: '123456', password_confirmation: '123456', nick_name: 'firstName')
 
@@ -10,10 +11,10 @@ module Queries
         create(:tournament, name: 'Second', description: 'Second description', prize: 300, user_id: author.id)
   
 
-        post '/graphql', params: { query: query }
+        #post '/graphql', params: { query: query }
 
-        json = JSON.parse(response.body)
-        data = json['data']['tournaments']
+        temp = schema.execute(query: query)
+        data = JSON.parse(temp.to_json)['data']['tournaments']
 
         expect(data).to match_array [
           hash_including(

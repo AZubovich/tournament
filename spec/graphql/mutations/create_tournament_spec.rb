@@ -1,20 +1,23 @@
 require 'rails_helper'
 module Mutations
   RSpec.describe CreateTournament, type: :request do
+    abc = GraphQL::BackendSchema
     describe '.resolve' do
+      let(:schema) { abc }
       let(:user) { create(:user) }
         it 'creates a tournament' do
           puts "This is user id: #{user.id}"
           expect do
-            post '/graphql', params: { query: query }
+            #post '/graphql', params: { query: query }
+            schema.execute(query: query)
           end.to change { Tournament.count }.by(1)
         end
 
         it 'returns a tournament' do
           puts "This is user id: #{user.id}"
-          post '/graphql', params: { query: second_query }
-          json = JSON.parse(response.body)
-          data = json['data']['createTournament']['tournament']
+          #post '/graphql', params: { query: second_query }
+          temp = schema.execute(query: second_query)
+          data = JSON.parse(temp.to_json)['data']['createTournament']['tournament']
 
           expect(data).to include(
             'id'              => be_present,

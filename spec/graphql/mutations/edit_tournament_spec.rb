@@ -4,9 +4,10 @@ module Mutations
     describe '.resolve' do
         let(:user) { create(:user) }
         let(:tournament) { create(:tournament) }
+        let(:schema) { GraphQL::BackendSchema }
         it 'returns a edits tournament' do
           tournament.reload
-          post '/graphql', params: { query: edit_query }
+          schema.execute(query: edit_query)
           tournament.reload
           expect(tournament.name).to eq("Name")
           expect(tournament.description).to eq("Description")
