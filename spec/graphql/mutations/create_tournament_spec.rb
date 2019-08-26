@@ -24,6 +24,8 @@ module Mutations
             'name'           => 'name',
             'description'    => 'description',
             'prize'           => 200,
+            'kind'           => 'Regular',
+            'limit'           => 8,
             'userId'           => '2'
           )
         end
@@ -36,13 +38,17 @@ module Mutations
             title:"Name"
             description:"Description"
             prize:"200"
-            token:"PHrkenltkZYMNEtfwkLtlLIEfg==--xyXYDvTojmYaG7ey--tqgOJI5w25UQ4CtPtuiNWg=="
+            kind:"Regular"
+            limit:"8"
+            token:"BWiRVILcfwEzZd5TqRT848Icfw==--olkrRJ28cCmnnUUJ--ZdRQ72lboTno3Q8Ii0Npgw=="
           ) {
             tournament{
               id
               name
               description
               prize
+              kind
+              limit
               userId
             }
             }
@@ -56,13 +62,17 @@ module Mutations
             title:"name"
             description:"description"
             prize:"200"
-            token:"4AEt+VS5I7wRSZS5LNJ4jo4rZg==--bDBvpHK5T75xP5kp--k1yqJTiDFyhjacQPvgQFwA=="
+            kind:"Regular"
+            limit:"8"
+            token:"ub5H1Ca2j9iYsItSTtqZdEe+uw==--tpoNafysNBDCz1jd--KxvobYq563oFsU14W0etAg=="
           ) {
             tournament{
               id
               name
               description
               prize
+              kind
+              limit
               userId
             }
             }

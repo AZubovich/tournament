@@ -7,5 +7,6 @@ module Types
     field :prize, Int, null: true
     field :kind, String, null: true
     field :limit, Int, null: true
+    field :players, [Types::PlayerType], null: true
   end
 end

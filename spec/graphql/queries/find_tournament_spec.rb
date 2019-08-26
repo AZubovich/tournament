@@ -5,8 +5,8 @@ module Queries
       let(:schema) { GraphQL::BackendSchema }
       it 'returns all users' do
         author = create(:user, email: 'first@m.ru', password: '123456', password_confirmation: '123456', nick_name: 'firstName')
-        tours = create(:tournament, name: 'First', description: 'First description', prize: 200, user_id: author.id)
-        create(:tournament, name: 'Second', description: 'Second description', prize: 300, user_id: author.id)
+        tours = create(:tournament, name: 'First', description: 'First description', prize: 200, kind: 'Regular', limit: 8, user_id: author.id)
+        create(:tournament, name: 'Second', description: 'Second description', prize: 300, kind: 'Play-off', limit: 4, user_id: author.id)
   
 
         #post '/graphql', params: { query: find_tournaments_query }
@@ -17,6 +17,8 @@ module Queries
                 "name" => "First",
                 "description" =>"First description",
                 "prize" => 200,
+                "kind" => "Regular",
+                "limit" => 8,
                 "userId"=> "1"
               }
          )
@@ -33,6 +35,8 @@ module Queries
               name
               description
               prize
+              kind
+              limit
               userId
             }
         }

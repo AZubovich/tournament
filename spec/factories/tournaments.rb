@@ -26,6 +26,8 @@ FactoryBot.define do
     name { "MyName" }
     description { "MyDescription" }
     prize { 1 }
+    kind { "Regular" }
+    limit { 4 }
     user { create(:user) }
   end
 end

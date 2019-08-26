@@ -10,7 +10,6 @@ module Mutations
     field :tournament, Types::TournamentType, null: true
 
     def resolve(title:, description:, prize:, kind:, limit:, token:)
-      puts "This is kind: #{kind}"
       user = Current.current_user(token)
       tournament = Tournament.create(
         name: title,
