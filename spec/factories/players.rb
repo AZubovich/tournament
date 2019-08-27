@@ -24,8 +24,8 @@
 FactoryBot.define do
   factory :player do
     nick_name { "MyString" }
-    points { 1 }
-    user { nil }
-    tournament { nil }
+    points { 0 }
+    user { create(:user) }
+    tournament { create(:tournament) }
   end
 end

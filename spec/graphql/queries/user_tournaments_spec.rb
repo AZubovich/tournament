@@ -14,17 +14,21 @@ module Queries
 
 
         temp = schema.execute(query: user_tournaments_query)
-        data = JSON.parse(temp.to_json)['data']['userTournaments']
 
-        expect(data).to include(
-            'id'          => be_present,
-            'name'   => 'First',
-            'description'    => 'First description',
-            'prize'    => 200,
-            'kind'    => 'Regular',
-            'limit'    => 8,
-            'userId'    => '1'
-          )
+        data = JSON.parse(temp.to_json)
+        json_client = { "data" =>
+          { "userTournaments" => [{
+              "id" => "1",
+              "name" => "First",
+              "description" => "First description",
+              "prize" => 200,
+              "kind" => "Regular",
+              "limit" => 8,
+              "userId" => "1",
+            }
+          ]
+        }}
+        expect(data).to eq(json_client)
       end
     end
 

@@ -11,17 +11,19 @@ module Queries
 
         #post '/graphql', params: { query: find_tournaments_query }
         temp = schema.execute(query: find_tournaments_query)
-        data = JSON.parse(temp.to_json)['data']['findTournament']
-        expect(data).to include(
-              { "id" => "1",
-                "name" => "First",
-                "description" =>"First description",
-                "prize" => 200,
-                "kind" => "Regular",
-                "limit" => 8,
-                "userId"=> "1"
-              }
-         )
+        data = JSON.parse(temp.to_json)
+        json_client = { "data" =>
+          { "findTournament" => { 
+              "id" => "1",
+              "name" => "First",
+              "description" => "First description",
+              "prize" => 200,
+              "kind" => "Regular",
+              "limit" => 8,
+              "userId" => "1",
+            }
+        }}
+        expect(data).to eq(json_client)
       end
     end
 

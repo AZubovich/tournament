@@ -17,17 +17,22 @@ module Mutations
           puts "This is user id: #{user.id}"
           #post '/graphql', params: { query: second_query }
           temp = schema.execute(query: second_query)
-          data = JSON.parse(temp.to_json)['data']['createTournament']['tournament']
+          data = JSON.parse(temp.to_json)
+          json_client = { "data" =>
+            { "createTournament" => {
+              "tournament" => {
+                "id" => "2",
+                "name" => "name",
+                "description" => "description",
+                "prize" => 200,
+                "kind" => "Regular",
+                "limit" => 8,
+                "userId" => "2"
+              }
+            }
+          }}
+          expect(data).to eq(json_client)
 
-          expect(data).to include(
-            'id'              => be_present,
-            'name'           => 'name',
-            'description'    => 'description',
-            'prize'           => 200,
-            'kind'           => 'Regular',
-            'limit'           => 8,
-            'userId'           => '2'
-          )
         end
     end
 

@@ -6,7 +6,6 @@ module Types
     field :find_tournament, resolver: Queries::FindTournament
     field :user_tournaments, resolver: Queries::UserTournaments
     field :player_tournaments, resolver: Queries::PlayerTournaments
-
     field :profile, UserType, null: true,
 
     description: 'profile using'
