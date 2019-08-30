@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_26_065308) do
+ActiveRecord::Schema.define(version: 2019_08_30_105234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "games", force: :cascade do |t|
+    t.integer "first_player_id"
+    t.integer "second_player_id"
+    t.integer "first_player_time"
+    t.integer "second_player_time"
+    t.integer "task_id"
+    t.bigint "tournament_id"
+    t.bigint "player_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status"
+    t.index ["player_id"], name: "index_games_on_player_id"
+    t.index ["tournament_id"], name: "index_games_on_tournament_id"
+  end
 
   create_table "players", force: :cascade do |t|
     t.string "nick_name"
@@ -26,6 +41,13 @@ ActiveRecord::Schema.define(version: 2019_08_26_065308) do
     t.index ["user_id"], name: "index_players_on_user_id"
   end
 
+  create_table "tasks", force: :cascade do |t|
+    t.string "description"
+    t.string "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tournaments", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -35,6 +57,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_065308) do
     t.datetime "updated_at", null: false
     t.string "kind"
     t.integer "limit"
+    t.string "status"
     t.index ["user_id"], name: "index_tournaments_on_user_id"
   end
 
@@ -55,6 +78,8 @@ ActiveRecord::Schema.define(version: 2019_08_26_065308) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "games", "players"
+  add_foreign_key "games", "tournaments"
   add_foreign_key "players", "tournaments"
   add_foreign_key "players", "users"
   add_foreign_key "tournaments", "users"
