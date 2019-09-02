@@ -29,7 +29,6 @@ FactoryBot.define do
     first_player_time { 1 }
     second_player_time { 1 }
     task_id { 1 }
-    tournament { nil }
-    player { nil }
+    tournament { create(:tournament) }
   end
 end
