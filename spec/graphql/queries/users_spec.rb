@@ -11,21 +11,22 @@ module Queries
         #post '/graphql', params: { query: query }
 
         temp = schema.execute(query: query)
-        data = JSON.parse(temp.to_json)['data']['users']
 
+        data = JSON.parse(temp.to_json)
+        json_client = { "data" =>
+          { "users" => [
+            { "id" => "1",
+              "email" => "first@m.ru",
+              "nickName" => "firstName"
+            },
+            { "id" => "2", 
+              "email" => "second@m.ru",
+              "nickName" => "secondName"
+            }
+            ]
+        }}
+        expect(data).to eq(json_client)
 
-        expect(data).to match_array [
-          hash_including(
-            'id'          => be_present,
-            'email'   => 'first@m.ru',
-            'nickName'    => 'firstName'
-          ),
-          hash_including(
-            'id'          => be_present,
-            'email'   => 'second@m.ru',
-            'nickName'    => 'secondName'
-          )
-        ]
       end
     end
 

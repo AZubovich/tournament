@@ -12,6 +12,8 @@ module Mutations
           expect(tournament.name).to eq("Name")
           expect(tournament.description).to eq("Description")
           expect(tournament.prize).to eq(100)
+          expect(tournament.kind).to eq("Play-off")
+          expect(tournament.limit).to eq(4)
         end
     end
 
@@ -23,12 +25,16 @@ module Mutations
             description: "Description"
             prize: "100"
             id:"1"
+            kind:"Play-off"
+            limit:"4"
           ) {
             tournament{
               id
               name
               description
               prize
+              kind
+              limit
               userId
             }
             }

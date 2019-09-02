@@ -4,25 +4,31 @@ module Queries
     describe '.resolve' do
       let(:schema) { GraphQL::BackendSchema }
       it 'returns all users' do
-        author = create(:user, email: 'first@m.ru', password: '123456', password_confirmation: '123456', nick_name: 'firstName')
+        author = create(:user, email: 'first@m.ru', password: '123456', password_confirmation: '123456',  nick_name: 'firstName')
         author1 = create(:user, email: 'second@m.ru', password: '123456', password_confirmation: '123456', nick_name: 'secondName')
-        tours = create(:tournament, name: 'First', description: 'First description', prize: 200, user_id: author.id)
-        create(:tournament, name: 'Second', description: 'Second description', prize: 300, user_id: author1.id)
+        tours = create(:tournament, name: 'First', description: 'First description', prize: 200, kind: 'Regular', limit: 8, user_id: author.id)
+        create(:tournament, name: 'Second', description: 'Second description', prize: 300, kind: 'Play-off', limit: 4, user_id: author1.id)
   
 
         #post '/graphql', params: { query: user_tournaments_query }
 
 
         temp = schema.execute(query: user_tournaments_query)
-        data = JSON.parse(temp.to_json)['data']['userTournaments']
 
-        expect(data).to include(
-            'id'          => be_present,
-            'name'   => 'First',
-            'description'    => 'First description',
-            'prize'    => 200,
-            'userId'    => '1'
-          )
+        data = JSON.parse(temp.to_json)
+        json_client = { "data" =>
+          { "userTournaments" => [{
+              "id" => "1",
+              "name" => "First",
+              "description" => "First description",
+              "prize" => 200,
+              "kind" => "Regular",
+              "limit" => 8,
+              "userId" => "1",
+            }
+          ]
+        }}
+        expect(data).to eq(json_client)
       end
     end
 
@@ -36,6 +42,8 @@ module Queries
               name
               description
               prize
+              kind
+              limit
               userId
             }
         }

@@ -4,8 +4,11 @@
 #
 #  id          :bigint           not null, primary key
 #  description :text
+#  kind        :string
+#  limit       :integer
 #  name        :string
 #  prize       :integer
+#  status      :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  user_id     :bigint
@@ -21,7 +24,11 @@
 
 class Tournament < ApplicationRecord
   belongs_to :user
+  has_many :players, dependent: :destroy
+  has_many :games, dependent: :destroy
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
   validates :prize, presence: true
+  validates :kind, presence: true
+  validates :limit, presence: true
 end

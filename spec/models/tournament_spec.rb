@@ -4,8 +4,11 @@
 #
 #  id          :bigint           not null, primary key
 #  description :text
+#  kind        :string
+#  limit       :integer
 #  name        :string
 #  prize       :integer
+#  status      :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  user_id     :bigint

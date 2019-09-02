@@ -5,5 +5,8 @@ module Types
     field :name, String, null: true
     field :description, String, null: true
     field :prize, Int, null: true
+    field :kind, String, null: true
+    field :limit, Int, null: true
+    field :players, [Types::PlayerType], null: true
   end
 end
