@@ -4,7 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  answer      :string
-#  description :string
+#  description :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
