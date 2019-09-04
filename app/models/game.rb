@@ -3,7 +3,9 @@
 # Table name: games
 #
 #  id                 :bigint           not null, primary key
+#  first_player_name  :string
 #  first_player_time  :integer
+#  second_player_name :string
 #  second_player_time :integer
 #  status             :string
 #  created_at         :datetime         not null

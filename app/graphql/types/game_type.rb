@@ -7,6 +7,8 @@ module Types
     field :second_player_id, Int, null: true
     field :first_player_time, Int, null: true
     field :second_player_time, Int, null: true
+    field :first_player_name, String, null: true
+    field :second_player_name, String, null: true
     field :task_id, Int, null: true
   end
 end

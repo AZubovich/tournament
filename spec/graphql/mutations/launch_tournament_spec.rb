@@ -51,7 +51,7 @@ module Queries
       <<~GQL
         mutation {
           launchTournament(
-            tourId: "1"
+            id: "1"
           ) {
               games{
                 id

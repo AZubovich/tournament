@@ -13,5 +13,6 @@ module Types
     field :launch_tournament, mutation: Mutations::LaunchTournament
     field :register_player, mutation: Mutations::RegisterPlayer
     field :delete_player, mutation: Mutations::DeletePlayer
+    field :send_answer, mutation: Mutations::SendAnswer
   end
 end
