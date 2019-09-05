@@ -17,6 +17,8 @@ module Mutations
             second_player_name: players[j].nick_name,
             status: 'active',
             tournament_id: tour.id,
+            first_player_time: 0,
+            second_player_time: 0,
             task_id: task.id
           )
         end

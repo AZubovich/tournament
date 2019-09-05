@@ -31,6 +31,9 @@ FactoryBot.define do
     first_player_time { 1 }
     second_player_time { 1 }
     task_id { 1 }
+    first_player_name { "first" }
+    second_player_name { "second" }
+    status { "active" }
     tournament { create(:tournament) }
   end
 end
