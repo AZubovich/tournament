@@ -37,18 +37,24 @@ module Mutations
         game.status = "ended"
         if(game.first_player_time < game.second_player_time)
           player = Player.find_by(nick_name: game.first_player_name, tournament_id: game.tournament_id)
-          player.points+=1
+          Tournament.find_by(id: game.tournament_id).kind == "Regular" ? player.points+=1 : player.round+=1
           player.save
         else
           player = Player.find_by(nick_name: game.second_player_name, tournament_id: game.tournament_id)
-          player.points+=1
+          Tournament.find_by(id: game.tournament_id).kind == "Regular" ? player.points+=1 : player.round+=1
           player.save
         end
       end
       game.save
       if(Tournament.find_by(id: game.tournament_id).games.where(status: "active").count == 0)
         tour = Tournament.find_by(id: game.tournament_id)
-        tour.status = "ended"
+        if tour.kind == "Regular"
+          tour.status = "ended"
+        end
+        if tour.kind == "Play-off"
+          tour.round +=1
+          tour.players.where(round: tour.round).count == 1 ? tour.status = "ended" : tour.status = nil
+        end
         tour.save
       end
       message

@@ -17,6 +17,7 @@ module Mutations
         prize: prize.to_i,
         kind: kind,
         limit: limit.to_i,
+        round: 0,
         user_id: user.id
       )
       { tournament: tournament }
