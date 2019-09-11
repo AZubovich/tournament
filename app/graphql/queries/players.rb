@@ -11,7 +11,7 @@ module Queries
       if tour.kind == 'Regular'
         Player.where(tournament_id: id).order(points: :desc, nick_name: :asc)
       else
-        Player.where(tournament_id: id)
+        Player.where(tournament_id: id).order(id: :asc)
       end
     end
   end

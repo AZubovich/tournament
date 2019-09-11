@@ -8,55 +8,16 @@ module Mutations
 
     def resolve(token:, id:, answer:, timer:)
       timer1 = (Time.now.to_f * 1000).to_i
-      puts "Its Time of Ruby: #{timer1}"
-      puts "Its distinct of times: #{timer1 - timer}"
       total = timer1 - timer
       game = Game.find_by(id: id)
       user = Current.current_user(token)
       task = Task.find_by(id: game.task_id)
+      tour = Tournament.find_by(id: game.tournament_id)
       lol = eval(answer)
-      puts "This is eval: #{lol}"
-      if user.nick_name == game.first_player_name
-        game.first_player_time += total
-        if lol.to_s == task.answer
-          game.first_player_id = user.id.to_i
-          message = "Congratulations! You solve it!"
-        else
-          message = "Sorry, you have a mistake"
-        end
-      else
-        game.second_player_time += total
-        if lol.to_s == task.answer
-          game.second_player_id = user.id.to_i
-          message = "Congratulations! You solve it!"
-        else
-          message = "Sorry, you have a mistake"
-        end
-      end
-      if(game.first_player_id!=nil && game.second_player_id!=nil)
-        game.status = "ended"
-        if(game.first_player_time < game.second_player_time)
-          player = Player.find_by(nick_name: game.first_player_name, tournament_id: game.tournament_id)
-          Tournament.find_by(id: game.tournament_id).kind == "Regular" ? player.points+=1 : player.round+=1
-          player.save
-        else
-          player = Player.find_by(nick_name: game.second_player_name, tournament_id: game.tournament_id)
-          Tournament.find_by(id: game.tournament_id).kind == "Regular" ? player.points+=1 : player.round+=1
-          player.save
-        end
-      end
+      message = Result.set_time(user, game, total, lol)
+      Result.set_result(game)
       game.save
-      if(Tournament.find_by(id: game.tournament_id).games.where(status: "active").count == 0)
-        tour = Tournament.find_by(id: game.tournament_id)
-        if tour.kind == "Regular"
-          tour.status = "ended"
-        end
-        if tour.kind == "Play-off"
-          tour.round +=1
-          tour.players.where(round: tour.round).count == 1 ? tour.status = "ended" : tour.status = nil
-        end
-        tour.save
-      end
+      Tour.over(tour)
       message
     end
   end
