@@ -23,13 +23,13 @@
 #
 #  fk_rails_...  (tournament_id => tournaments.id)
 #
-
+require 'faker'
 FactoryBot.define do
   factory :game do
-    first_player_id { 1 }
-    second_player_id { 1 }
-    first_player_time { 1 }
-    second_player_time { 1 }
+    first_player_id { nil }
+    second_player_id { nil }
+    first_player_time { 0 }
+    second_player_time { 0 }
     task_id { 1 }
     first_player_name { "first" }
     second_player_name { "second" }

@@ -14,8 +14,8 @@ module Mutations
       task = Task.find_by(id: game.task_id)
       tour = Tournament.find_by(id: game.tournament_id)
       lol = eval(answer)
-      message = Result.set_time(user, game, total, lol)
-      Result.set_result(game)
+      message = Result.set_time(user, game, total,task, lol)
+      Result.set_result(game, tour)
       game.save
       Tour.over(tour)
       message

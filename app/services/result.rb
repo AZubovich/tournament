@@ -1,6 +1,6 @@
 module Result
   class << self
-    def set_time(user, game, total, lol)
+    def set_time(user, game, total, task, lol)
       if user.nick_name == game.first_player_name
         game.first_player_time += total
         if lol.to_s == task.answer
@@ -20,7 +20,7 @@ module Result
       end
       message
     end
-    def set_result(game)
+    def set_result(game, tour)
       if(game.first_player_id!=nil && game.second_player_id!=nil)
         game.status = "ended"
         if(game.first_player_time < game.second_player_time)

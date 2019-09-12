@@ -22,11 +22,11 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-
+require 'faker'
 FactoryBot.define do
   factory :tournament do
-    name { "MyName" }
-    description { "MyDescription" }
+    name { Faker::Lorem.word }
+    description { Faker::Lorem.sentence }
     prize { 1 }
     kind { "Regular" }
     limit { 4 }

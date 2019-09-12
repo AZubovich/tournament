@@ -21,10 +21,10 @@
 #  fk_rails_...  (tournament_id => tournaments.id)
 #  fk_rails_...  (user_id => users.id)
 #
-
+require 'faker'
 FactoryBot.define do
   factory :player do
-    nick_name { "MyString" }
+    nick_name { user.nick_name }
     points { 0 }
     user { create(:user) }
     tournament { create(:tournament) }
