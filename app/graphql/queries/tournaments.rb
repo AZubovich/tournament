@@ -5,7 +5,7 @@ module Queries
     type [Types::TournamentType], null: false
 
     def resolve
-      ::Tournament.all
+      ::Tournament.all.order(status: :desc, prize: :desc)
     end
   end
 end
