@@ -14,15 +14,15 @@ module Mutations
       task = Task.find_by(id: game.task_id)
       tour = Tournament.find_by(id: game.tournament_id)
       begin
-        lol = eval(answer)
-        message = Result.set_time(user, game, total, task, lol)
+        eval_answer = eval(answer)
+        message = ServiceResult.send_message(user, game, total, task, eval_answer)
       rescue StandardError => e
         puts "This is error message:#{e.message}"
         message = e.message
       end
-      Result.set_result(game, tour)
+      ServiceResult.give_result(game, tour)
       game.save
-      Tour.over(tour)
+      ServiceTour.over(tour)
       message
     end
   end

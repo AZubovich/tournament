@@ -8,10 +8,10 @@ module Mutations
     def resolve(id:)
       tour = Tournament.find_by(id: id)
       if tour.kind == "Regular"
-        Tour.create_regular_games(tour)
+        ServiceTour.create_regular_games(tour)
       end
       if tour.kind == "Play-off"
-        Tour.create_playoff_games(tour)
+        ServiceTour.create_playoff_games(tour)
       end
       tour.status = 'active'
       tour.save
