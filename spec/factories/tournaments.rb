@@ -31,5 +31,21 @@ FactoryBot.define do
     kind { "Regular" }
     limit { 4 }
     user { create(:user) }
+
+    factory :tournament_with_players do
+      after(:create) do |tournament, _evaluator|
+        tournament.players << build(:player)
+        tournament.players << build(:player)
+        tournament.players << build(:player)
+      end
+
+      factory :tournament_with_games do
+        after(:create) do |tournament, _evaluator|
+          tournament.games << build(:game,
+            first_player_name: tournament.players.first.nick_name,
+            second_player_name: tournament.players.last.nick_name)
+        end
+      end
+    end
   end
 end

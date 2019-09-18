@@ -27,6 +27,6 @@ FactoryBot.define do
     nick_name { user.nick_name }
     points { 0 }
     user { create(:user) }
-    tournament { create(:tournament) }
+    tournament
   end
 end

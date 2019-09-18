@@ -2,14 +2,8 @@ require 'rails_helper'
 module Queries
   RSpec.describe Tournaments, type: :request do
     before(:all) do
-      task = create(:task)
-      author = create(:user)
-      author1 = create(:user)
-      author2 = create(:user)
-      tour1 = create(:tournament, user: author)
-      player1 = create(:player, user: author, tournament: tour1)
-      player2 = create(:player, user: author1, tournament: tour1)
-      player3 = create(:player, user: author2, tournament: tour1)
+      create(:task)
+      create(:tournament_with_players)
     end
     describe '.resolve' do
       let(:schema) { GraphQL::BackendSchema }
