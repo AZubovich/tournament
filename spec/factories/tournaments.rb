@@ -8,6 +8,7 @@
 #  limit       :integer
 #  name        :string
 #  prize       :integer
+#  round       :integer
 #  status      :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -21,14 +22,30 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-
+require 'faker'
 FactoryBot.define do
   factory :tournament do
-    name { "MyName" }
-    description { "MyDescription" }
+    name { Faker::Lorem.word }
+    description { Faker::Lorem.sentence }
     prize { 1 }
     kind { "Regular" }
     limit { 4 }
     user { create(:user) }
+
+    factory :tournament_with_players do
+      after(:create) do |tournament, _evaluator|
+        tournament.players << build(:player)
+        tournament.players << build(:player)
+        tournament.players << build(:player)
+      end
+
+      factory :tournament_with_games do
+        after(:create) do |tournament, _evaluator|
+          tournament.games << build(:game,
+            first_player_name: tournament.players.first.nick_name,
+            second_player_name: tournament.players.last.nick_name)
+        end
+      end
+    end
   end
 end

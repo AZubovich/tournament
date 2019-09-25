@@ -21,13 +21,13 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-
+require 'faker'
 FactoryBot.define do
   factory :user do
-    sequence(:email) { 'example@m.ru' }
+    sequence(:email) { Faker::Internet.email }
     sequence(:password) { '123456' }
     sequence(:password_confirmation) { '123456' }
-    sequence(:nick_name) { 'exampleName' }
+    sequence(:nick_name) { Faker::Internet.username }
     sequence(:admin) { false }
   end
 end

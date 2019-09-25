@@ -10,7 +10,9 @@ module Types
     field :create_tournament, mutation: Mutations::CreateTournament
     field :edit_tournament, mutation: Mutations::EditTournament
     field :delete_tournament, mutation: Mutations::DeleteTournament
+    field :launch_tournament, mutation: Mutations::LaunchTournament
     field :register_player, mutation: Mutations::RegisterPlayer
     field :delete_player, mutation: Mutations::DeletePlayer
+    field :send_answer, mutation: Mutations::SendAnswer
   end
 end

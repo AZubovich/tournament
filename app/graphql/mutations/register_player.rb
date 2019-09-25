@@ -15,6 +15,7 @@ module Mutations
         player = Player.create(
           nick_name: user.nick_name,
           points: 0,
+          round: 0,
           user_id: user.id,
           tournament_id: tournament.id
         )

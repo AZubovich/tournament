@@ -5,6 +5,7 @@
 #  id            :bigint           not null, primary key
 #  nick_name     :string
 #  points        :integer
+#  round         :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  tournament_id :bigint

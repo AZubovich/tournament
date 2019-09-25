@@ -5,6 +5,7 @@
 #  id            :bigint           not null, primary key
 #  nick_name     :string
 #  points        :integer
+#  round         :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  tournament_id :bigint
@@ -20,12 +21,12 @@
 #  fk_rails_...  (tournament_id => tournaments.id)
 #  fk_rails_...  (user_id => users.id)
 #
-
+require 'faker'
 FactoryBot.define do
   factory :player do
-    nick_name { "MyString" }
+    nick_name { user.nick_name }
     points { 0 }
     user { create(:user) }
-    tournament { create(:tournament) }
+    tournament
   end
 end

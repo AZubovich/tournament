@@ -8,7 +8,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-
+require 'faker'
 FactoryBot.define do
   factory :task do
     description { "MyString" }

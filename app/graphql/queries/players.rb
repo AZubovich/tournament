@@ -9,9 +9,9 @@ module Queries
     def resolve(id:)
       tour = Tournament.find_by(id: id)
       if tour.kind == 'Regular'
-        Player.where(tournament_id: id).order(:points,:nick_name)
+        Player.where(tournament_id: id).order(points: :desc, nick_name: :asc)
       else
-        Player.where(tournament_id: id)
+        Player.where(tournament_id: id).order(id: :asc)
       end
     end
   end

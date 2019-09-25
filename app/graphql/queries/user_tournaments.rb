@@ -7,7 +7,7 @@ module Queries
 
     def resolve(token:)
       user = Current.current_user(token)
-      ::Tournament.where(user_id: user.id)
+      ::Tournament.where(user_id: user.id).order(status: :desc, prize: :desc)
     end
   end
 end
