@@ -14,5 +14,6 @@ module Types
     field :register_player, mutation: Mutations::RegisterPlayer
     field :delete_player, mutation: Mutations::DeletePlayer
     field :send_answer, mutation: Mutations::SendAnswer
+    field :create_task, mutation: Mutations::CreateTask
   end
 end
