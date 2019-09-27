@@ -24,8 +24,9 @@ module ServiceTour
     end
 
     def over(tour)
-      if(tour.games.where(status: 'active').count == 0)
+      if (tour.games.where(status: 'active').count == 0)
         tour.status = 'ended' if tour.kind == 'Regular'
+        payment(tour)
         if tour.kind == 'Play-off'
           tour.round += 1
           tour.players.where(round: tour.round).count == 1 ? tour.status = 'ended' : tour.status = nil
@@ -44,6 +45,24 @@ module ServiceTour
         second_player_time: 0,
         task_id: task_number
       )
+    end
+
+    def payment(tour)
+      pays = tour.prize_distribution.split(',')
+      players = order_players(tour)
+      (0..tour.prize_winner - 1).each do |i|
+        user = User.find_by(id: players[i].user_id)
+        user.money += pays[i].to_i
+        user.save
+      end
+    end
+
+    def order_players(tour)
+      if tour.kind == 'Regular'
+        Player.where(tournament_id: tour.id).order(points: :desc, nick_name: :asc).to_a
+      else
+        Player.where(tournament_id: tour.id).order(round: :desc, nick_name: :asc).to_a
+      end
     end
   end
 end

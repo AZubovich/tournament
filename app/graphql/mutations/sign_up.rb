@@ -15,6 +15,7 @@ module Mutations
         password: password,
         password_confirmation: password_confirmation,
         nick_name: nick_name,
+        money: 0,
         admin: false,
         super_admin: false
       )
