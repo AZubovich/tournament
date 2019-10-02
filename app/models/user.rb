@@ -31,6 +31,7 @@ class User < ApplicationRecord
 
   has_many :tournaments, dependent: :destroy
   has_many :players, dependent: :destroy
+  has_many :achievements, dependent: :destroy
   has_many :tournaments_with_players, :through => :players, :source => :tournament
   validates :nick_name, presence: true, uniqueness: true
 end

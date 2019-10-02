@@ -9,6 +9,7 @@ module Types
     field :players, resolver: Queries::Players
     field :player_games, resolver: Queries::PlayerGames
     field :find_task, resolver: Queries::FindTask
+    field :find_user, resolver: Queries::FindUser
     field :profile, UserType, null: true,
 
     description: 'profile using'

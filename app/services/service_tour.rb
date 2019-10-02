@@ -25,14 +25,19 @@ module ServiceTour
 
     def over(tour)
       if (tour.games.where(status: 'active').count == 0)
-        tour.status = 'ended' if tour.kind == 'Regular'
-        payment(tour)
+        end_of_tournament(tour) if tour.kind == 'Regular'
         if tour.kind == 'Play-off'
           tour.round += 1
-          tour.players.where(round: tour.round).count == 1 ? tour.status = 'ended' : tour.status = nil
+          tour.players.where(round: tour.round).count == 1 ? end_of_tournament(tour) : tour.status = nil
         end
         tour.save
       end
+    end
+
+    def end_of_tournament(tour)
+      tour.status = 'ended'
+      payment(tour)
+      achieve_users(tour)
     end
 
     def create_game(player1, player2, tour_number, task_number)
@@ -55,6 +60,28 @@ module ServiceTour
         user.money += pays[i].to_i
         user.save
       end
+    end
+
+    def achieve_users(tour)
+      players = order_players(tour)
+      (0..players.count - 1).each do |i|
+        if i <= 2
+          user = User.find_by(id: players[i].user_id)
+          description = "You have a #{i + 1} place in #{tour.name} tournament"
+          create_achievement(description, user.id, i + 1)
+        end
+      end
+    end
+
+    def create_achievement(description, user_id, iter)
+      image_url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQljWn1IiGDi2El6NEz0SWL5etba-0YOvxydAnFwVI5IXOXceegg' if iter == 1
+      image_url = 'https://builder.crownawards.com/StoreFront/ImageCompositionServlet?files=jsp/images/products/STCBG2ND.gif,,&width=378&trim=true' if iter == 2
+      image_url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI6qikTqpZLcVcLlXPfmkfR7bsLZ1IlGq-8dpSKTR76vg10nQQQg' if iter == 3
+      Achievement.create(
+        description: description,
+        image_url: image_url,
+        user_id: user_id
+      )
     end
 
     def order_players(tour)
