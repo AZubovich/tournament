@@ -12,8 +12,8 @@ module ServiceTour
     end
 
     def create_playoff_games(tour)
-      amount = tour.players.where(round: tour.round).count - 1
-      players = tour.players.where(round: tour.round).order(id: :asc).to_a
+      amount = tour.players.on_this_round(tour.round).count - 1
+      players = tour.players.on_this_round(tour.round).order(id: :asc).to_a
       i = 0
       while i < amount
         j = i + 1
@@ -24,11 +24,11 @@ module ServiceTour
     end
 
     def over(tour)
-      if (tour.games.where(status: 'active').count == 0)
+      if (tour.games.active.count == 0)
         end_of_tournament(tour) if tour.kind == 'Regular'
         if tour.kind == 'Play-off'
           tour.round += 1
-          tour.players.where(round: tour.round).count == 1 ? end_of_tournament(tour) : tour.status = nil
+          tour.players.on_this_round(tour.round).count == 1 ? end_of_tournament(tour) : tour.status = nil
         end
         tour.save
       end
@@ -86,9 +86,9 @@ module ServiceTour
 
     def order_players(tour)
       if tour.kind == 'Regular'
-        Player.where(tournament_id: tour.id).order(points: :desc, nick_name: :asc).to_a
+        Player.regular_order(tour.id).to_a
       else
-        Player.where(tournament_id: tour.id).order(round: :desc, nick_name: :asc).to_a
+        Player.playoff_final_order(tour.id).to_a
       end
     end
   end
