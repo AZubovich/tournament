@@ -11,11 +11,14 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'activestorage'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # Use devise for create a user model
 gem 'devise'
+#Use this gem for images
+gem 'carrierwave', '~> 2.0'
 # Use devise-jwt tokens to authentication
 gem 'devise-jwt', '~> 0.5.9'
 # gem 'mini_racer', platforms: :ruby

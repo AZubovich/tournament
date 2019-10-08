@@ -1,5 +1,7 @@
 require_relative 'boot'
-
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
+require "active_storage/engine"
 require 'rails/all'
 require 'devise'
 

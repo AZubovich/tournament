@@ -3,8 +3,9 @@
 # Table name: achievements
 #
 #  id          :bigint           not null, primary key
+#  badge_url   :string
 #  description :text
-#  image_url   :string
+#  image       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  user_id     :bigint
@@ -19,5 +20,6 @@
 #
 
 class Achievement < ApplicationRecord
+  has_one_attached :image
   belongs_to :user
 end

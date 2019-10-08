@@ -74,14 +74,16 @@ module ServiceTour
     end
 
     def create_achievement(description, user_id, iter)
-      image_url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQljWn1IiGDi2El6NEz0SWL5etba-0YOvxydAnFwVI5IXOXceegg' if iter == 1
-      image_url = 'https://builder.crownawards.com/StoreFront/ImageCompositionServlet?files=jsp/images/products/STCBG2ND.gif,,&width=378&trim=true' if iter == 2
-      image_url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI6qikTqpZLcVcLlXPfmkfR7bsLZ1IlGq-8dpSKTR76vg10nQQQg' if iter == 3
-      Achievement.create(
+      image_path = '/home/aliaksandr/Downloads/1place.jpeg', image_name = '1place.jpeg' if iter == 1
+      image_path = '/home/aliaksandr/Downloads/2place.jpeg', image_name = '2place.jpeg' if iter == 2
+      image_path = '/home/aliaksandr/Downloads/3place.jpeg', image_name = '3place.jpeg' if iter == 3
+      achievement = Achievement.create(
         description: description,
-        image_url: image_url,
         user_id: user_id
       )
+      achievement.image.attach(io: File.open(image_path), filename: image_name)
+      achievement.badge_url = Rails.application.routes.url_helpers.rails_blob_url(achievement.image)
+      achievement.save
     end
 
     def order_players(tour)
