@@ -74,14 +74,14 @@ module ServiceTour
     end
 
     def create_achievement(description, user_id, iter)
-      image_path = '/home/aliaksandr/Downloads/1place.jpeg', image_name = '1place.jpeg' if iter == 1
-      image_path = '/home/aliaksandr/Downloads/2place.jpeg', image_name = '2place.jpeg' if iter == 2
-      image_path = '/home/aliaksandr/Downloads/3place.jpeg', image_name = '3place.jpeg' if iter == 3
+      image_info = '/home/aliaksandr/Downloads/1place.jpeg', '1place.jpeg' if iter == 1
+      image_info = '/home/aliaksandr/Downloads/2place.jpeg', '2place.jpeg' if iter == 2
+      image_info = '/home/aliaksandr/Downloads/3place.jpeg', '3place.jpeg' if iter == 3
       achievement = Achievement.create(
         description: description,
         user_id: user_id
       )
-      achievement.image.attach(io: File.open(image_path), filename: image_name)
+      achievement.image.attach(io: File.open(image_info[0]), filename: image_info[1])
       achievement.badge_url = Rails.application.routes.url_helpers.rails_blob_url(achievement.image)
       achievement.save
     end
