@@ -22,7 +22,7 @@
 FactoryBot.define do
   factory :achievement do
     description { "MyText" }
-    image_url { "MyString" }
+    badge_url { "MyString" }
     user { nil }
   end
 end

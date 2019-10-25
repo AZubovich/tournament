@@ -10,6 +10,7 @@ module Types
     field :player_games, resolver: Queries::PlayerGames
     field :find_task, resolver: Queries::FindTask
     field :find_user, resolver: Queries::FindUser
+    field :hall_fame, resolver: Queries::HallFame
     field :profile, UserType, null: true,
 
     description: 'profile using'
