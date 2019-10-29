@@ -13,5 +13,10 @@ module ServiceCheck
       distribution.split(',').each { |i| temp_prize += i.to_i }
       temp_prize
     end
+
+    def check_participants(community)
+      users = User.where(community_id: community.id).count
+      users < community.limit
+    end
   end
 end
