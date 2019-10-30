@@ -25,7 +25,7 @@ module Queries
                 {
                   'id' => '2',
                   'userId' => '2',
-                  'description' => 'You have 2nd place'
+                  'description' => 'You get 2nd place'
                 }
               ]
             },
@@ -37,7 +37,7 @@ module Queries
                 {
                   'id' => '1',
                   'userId' => '1',
-                  'description' => 'You have 1st place'
+                  'description' => 'You get 1st place'
                 }
               ]
             }
@@ -51,10 +51,16 @@ module Queries
     def query
       <<~GQL
         query {
-          users {
+          hallFame {
             id
             email
             nickName
+            money
+            achievements{
+              id
+              userId
+              description
+            }
           }
         }
       GQL
