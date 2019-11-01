@@ -4,8 +4,6 @@ services:
 addons:
     postgresql: '10.10'
 
-before_script:
-    - cp config/database.yml.travis config/database.yml
 
 language: ruby
 
