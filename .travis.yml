@@ -22,5 +22,5 @@ rvm:
   — 2.6.3
 
 script:
-  - bundle exec rake db:migrate RAILS_ENV=test
+  - bundle exec rake db:reset db:setup db:migrate RAILS_ENV=test
   - bundle exec rspec
