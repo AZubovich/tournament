@@ -1,21 +1,22 @@
 services:
     - postgresql
-    
+
 addons:
-  postgresql: "10.10"
+  postgresql: "10"
   apt:
     packages:
-    - postgresql-10.10
-    - postgresql-client-10.10
+    - postgresql-10
+    - postgresql-client-10
 env:
   global:
   - PGPORT=5433
 
 before_script:
-  - cp config/database.yml.travis config/database.yml
+  - cp config/database.travis.yml config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
 
 language: ruby
+
 dist: bionic
 
 rvm:
