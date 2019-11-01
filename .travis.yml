@@ -2,14 +2,7 @@ services:
     - postgresql
 
 addons:
-  postgresql: "10"
-  apt:
-    packages:
-    - postgresql-10
-    - postgresql-client-10
-env:
-  global:
-  - PGPORT=5433
+    postgresql: '9.6'
 
 before_script:
   - cp config/database.travis.yml config/database.yml
@@ -22,5 +15,5 @@ rvm:
   — 2.6.3
 
 script:
-  - bundle exec rake db:reset db:setup db:migrate RAILS_ENV=test
+  - bundle exec rake db:migrate RAILS_ENV=test
   - bundle exec rspec
