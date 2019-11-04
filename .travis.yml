@@ -1,26 +1,18 @@
-services:
-    - postgresql
-
-addons:
-  postgresql: "10"
-  apt:
-    packages:
-    - postgresql-10
-    - postgresql-client-10
-env:
-  global:
-  - PGPORT=5433
-
-before_script:
-  - cp config/database.travis.yml config/database.yml
-
 language: ruby
-
-dist: bionic
-
-rvm:
-  — 2.6.3
-
-script:
-  - bundle exec rake db:migrate RAILS_ENV=test
-  - bundle exec rspec
+rvm: 2.6.3
+before_install:
+  - sudo apt-get update
+  - sudo apt-get --yes remove postgresql\*
+  - sudo apt-get install -y postgresql-10 postgresql-client-10
+  - sudo cp /etc/postgresql/{9.6,10}/main/pg_hba.conf
+  - sudo service postgresql restart 10  
+before_script:
+  - psql --version
+  - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
+  - psql -c 'CREATE ROLE travis SUPERUSER LOGIN CREATEDB;' -U postgres
+  - cp config/database.yml.travis config/database.yml
+script: bundle exec rake spec
+services:
+  - postgresql
+addons:
+  postgresql: "10.10"
