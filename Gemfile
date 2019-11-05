@@ -42,7 +42,8 @@ gem 'rails-controller-testing'
 gem 'rack-cors'
 # Per-thread & per-request globally accessible storage
 gem 'request_store'
-
+# GraphQL techology for rails
+gem 'graphiql-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -71,7 +72,6 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # A development utility to test GraphQL queries.
-  gem 'graphiql-rails'
   #Seed data generator
   gem 'faker'
   # Annotate your rails files
@@ -89,7 +89,6 @@ group :test do
   #Seed data generator
   gem 'faker'
   gem 'selenium-webdriver'
-  gem 'graphiql-rails'
   # Clean your test db
   gem 'database_cleaner'
   # Easy installation and use of chromedriver to run system tests with Chrome
