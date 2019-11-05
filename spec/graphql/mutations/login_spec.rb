@@ -1,7 +1,7 @@
 require 'rails_helper'
 module Mutations
   RSpec.describe Login, type: :request do
-    abc = GraphQL::BackendSchema
+    abc = BackendSchema
     describe '.resolve' do
       let(:schema) { abc }
       let(:user) { create(:user)}

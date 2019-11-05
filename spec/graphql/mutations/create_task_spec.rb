@@ -1,9 +1,8 @@
 require 'rails_helper'
 module Mutations
   RSpec.describe CreateTask, type: :request do
-    abc = GraphQL::BackendSchema
     describe '.resolve' do
-      let(:schema) { abc }
+      let(:schema) { BackendSchema }
         it 'creates a task' do
           expect do
             #post '/graphql', params: { query: query }
