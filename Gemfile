@@ -89,6 +89,7 @@ group :test do
   #Seed data generator
   gem 'faker'
   gem 'selenium-webdriver'
+  gem 'graphiql-rails'
   # Clean your test db
   gem 'database_cleaner'
   # Easy installation and use of chromedriver to run system tests with Chrome
