@@ -42,8 +42,7 @@ gem 'rails-controller-testing'
 gem 'rack-cors'
 # Per-thread & per-request globally accessible storage
 gem 'request_store'
-# GraphQL techology for rails
-gem 'graphiql-rails'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -72,6 +71,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # A development utility to test GraphQL queries.
+  gem 'graphiql-rails'
   #Seed data generator
   gem 'faker'
   # Annotate your rails files
@@ -98,4 +98,4 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'graphiql-rails'
+gem 'graphiql-rails', group: :development

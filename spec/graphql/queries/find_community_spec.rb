@@ -2,7 +2,7 @@ require 'rails_helper'
 module Queries
   RSpec.describe Tournaments, type: :request do
     describe '.resolve' do
-      let(:schema) { GraphQL::BackendSchema }
+      let(:schema) { BackendSchema }
       it 'returns all users' do
         author1 = create(:user, email: 'first@m.ru', password: '123456', password_confirmation: '123456', nick_name: 'firstName', community_id: 1)
         author2 = create(:user, email: 'second@m.ru', password: '123456', password_confirmation: '123456', nick_name: 'secondName', community_id: 2)

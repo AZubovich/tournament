@@ -2,9 +2,9 @@ require 'rails_helper'
 module Mutations
   RSpec.describe UpdateAdmin, type: :request do
     describe '.resolve' do
-        let(:user) { create(:user) }
-        let(:schema) { GraphQL::BackendSchema }
+        let(:schema) { BackendSchema }
         it 'returns a user status' do
+          user = create(:user, email: 'third@m.ru', password: '123456', password_confirmation: '123456', nick_name: 'thirdName', admin: false)
           user.reload
           #post '/graphql', params: { query: update_query }
           schema.execute(query: update_query)
@@ -18,7 +18,7 @@ module Mutations
       <<~GQL
         mutation {
           updateAdmin(
-            nickName: "exampleName"
+            nickName: "thirdName"
           ) {
             user{
               id

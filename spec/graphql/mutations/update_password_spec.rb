@@ -2,9 +2,9 @@ require 'rails_helper'
 module Mutations
   RSpec.describe UpdatePassword, type: :request do
     describe '.resolve' do
-      let(:user) { create(:user)}
-      let(:schema) { GraphQL::BackendSchema }
+      let(:schema) { BackendSchema }
         it 'returns a user' do
+          user = create(:user, email: 'third@m.ru', password: '111111', password_confirmation: '111111', nick_name: 'thi')
           user.reload
           #post '/graphql', params: { query: update_query }
           schema.execute(query: update_query)

@@ -31,7 +31,7 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
   end
   it 'User with FactoryBot' do
-    user4 = create(:user)
-    expect(user4.email).to eq('z@m.ru')
+    user1 = create(:user, email: 'first@m.ru', password: '123456', password_confirmation: '123456', nick_name: 'first')
+    expect(user1.email).to eq('first@m.ru')
   end
 end

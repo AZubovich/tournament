@@ -2,7 +2,7 @@ require 'rails_helper'
 module Mutations
   RSpec.describe AddParticipant, type: :request do
     describe '.resolve' do
-        let(:schema) { GraphQL::BackendSchema }
+        let(:schema) { BackendSchema }
         it 'returns a participant' do
           user = create(:user, email: 'first@m.ru', password: '123456', password_confirmation: '123456', nick_name: 'firstName', community_id: 1)
           user1 = create(:user, email: 'second@m.ru', password: '123456', password_confirmation: '123456', nick_name: 'secondName', community_id: nil)

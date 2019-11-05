@@ -1,12 +1,9 @@
 require 'rails_helper'
 module Mutations
   RSpec.describe SignUp, type: :request do
-    abc = BackendSchema
     describe '.resolve' do
-      let(:schema) { abc }
+      let(:schema) { BackendSchema }
         it 'creates a user' do
-          #user = create(:user)
-
           expect do
             schema.execute(query: query)
           end.to change { User.count }.by(1)
@@ -19,8 +16,8 @@ module Mutations
           data = JSON.parse(temp.to_json)['data']['signUp']['user']
 
           expect(data).to include(
-            'id'              => be_present,
-            'email'           => 'expl@m.ru'
+            'id'              => '1',
+            'email'           => 'bobik@m.ru'
           )
         end
     end
@@ -29,7 +26,7 @@ module Mutations
       <<~GQL
         mutation {
           signUp(
-            email:"expl@m.ru"
+            email:"bobik@m.ru"
             password:"123456"
             passwordConfirmation:"123456"
           ) {
@@ -37,6 +34,7 @@ module Mutations
               id
               email
             }
+            token
             }
         }
       GQL

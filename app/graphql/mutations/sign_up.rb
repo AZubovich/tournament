@@ -19,8 +19,11 @@ module Mutations
         admin: false,
         super_admin: false
       )
+      puts "This is user.email #{user.email}"
+      puts "This is user.id #{user.id}"
       crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))
       token = crypt.encrypt_and_sign("user-id:#{user.id}")
+      puts "Token #{token}"
       #context[:session][:token] = token
       { user: user, token: token }
 

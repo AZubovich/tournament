@@ -3,7 +3,7 @@ module Mutations
   RSpec.describe UpdateEmail, type: :request do
     describe '.resolve' do
         let(:user) { create(:user)}
-        let(:schema) { GraphQL::BackendSchema }
+        let(:schema) { BackendSchema }
         it 'returns a user' do
           user.reload
           #post '/graphql', params: { query: update_query }

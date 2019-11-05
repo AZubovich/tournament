@@ -1,10 +1,8 @@
 require 'rails_helper'
 module Mutations
   RSpec.describe Login, type: :request do
-    abc = BackendSchema
     describe '.resolve' do
-      let(:schema) { abc }
-      let(:user) { create(:user)}
+      let(:schema) { BackendSchema }
         it 'invalid inputs has null data' do
           #user = create(:user)
           #post '/graphql', params: { query: invalid_query }
@@ -16,15 +14,15 @@ module Mutations
         end
         it 'returns a user' do
           #post '/graphql', params: { query: query }
-          puts user.email
+          create(:user, email: 'first@m.ru', password: '123456', password_confirmation: '123456', nick_name: 'firstName')
           temp = schema.execute(query: query)
-          puts temp.to_json
           data = JSON.parse(temp.to_json)['data']['login']['user']
           token_data = JSON.parse(temp.to_json)['data']['login']
 
           expect(data).to include(
-            'id'              => "1",
-            'email'           => "example@m.ru"
+            'id'              => '1',
+            'email'           => 'first@m.ru',
+            'nickName'        => 'firstName'
           )
           expect(token_data).to include(
             'token'              => be_present
@@ -52,12 +50,13 @@ module Mutations
       <<~GQL
         mutation {
           login(
-            email:"example@m.ru"
+            email:"first@m.ru"
             password:"123456"
           ) {
             user{
               id
               email
+              nickName
             }
             token
             }
@@ -66,3 +65,4 @@ module Mutations
     end
   end
 end
+

@@ -3,7 +3,7 @@ module Mutations
   RSpec.describe DeletePlayer, type: :request do
     describe '.resolve' do
         let(:tournament) { create(:tournament) }
-        let(:schema) { GraphQL::BackendSchema }
+        let(:schema) { BackendSchema }
         it 'deletes a player' do
           author = create(:user, email: 'first@m.ru', password: '123456', password_confirmation: '123456', nick_name: 'firstName')
           puts "This is author_id: #{author.id}"
