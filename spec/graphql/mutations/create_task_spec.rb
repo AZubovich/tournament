@@ -1,31 +1,33 @@
 require 'rails_helper'
 module Mutations
   RSpec.describe CreateTask, type: :request do
-    abc = GraphQL::BackendSchema
+    graphql_schema = GraphQL::BackendSchema
     describe '.resolve' do
-      let(:schema) { abc }
+      let(:schema) { graphql_schema }
         it 'creates a task' do
           expect do
             #post '/graphql', params: { query: query }
             schema.execute(query: first_mutation)
           end.to change { Task.count }.by(1)
         end
-
-        it 'returns a task' do
-          #post '/graphql', params: { query: second_query }
-          temp = schema.execute(query: second_mutation)
-          data = JSON.parse(temp.to_json)
-          json_client = { "data" =>
-            { "createTask" => {
-              "task" => {
-                "id" => "2",
-                "description" => "Get 300",
-                "answer" => '300'
-              }
-            }
-          }}
-          expect(data).to eq(json_client)
-        end
+    end
+    describe 'task hash comparing' do
+      let(:schema) { graphql_schema }
+      it 'returns a task' do
+        #post '/graphql', params: { query: second_query }
+        temp = schema.execute(query: second_mutation)
+        data = JSON.parse(temp.to_json)
+        json_client = { "data" =>
+        { "createTask" => {
+          "task" => {
+            "id" => "2",
+            "description" => "Get 300",
+            "answer" => '300'
+          }
+          }
+        }}
+        expect(data).to eq(json_client)
+      end
     end
 
     def first_mutation
