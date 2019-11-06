@@ -9,7 +9,7 @@ module Mutations
           #post '/graphql', params: { query: update_query }
           schema.execute(query: update_query)
           user.reload
-          expect(user.password).to eq("117462")
+          expect(user.password).to eq("111111")
         end       
     end
 

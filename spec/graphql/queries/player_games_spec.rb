@@ -15,11 +15,11 @@ module Queries
         data = JSON.parse(temp.to_json)
         json_client = { "data" =>
           { "playerGames" => [
-            { "id" => "1",
+            { "id" => "2",
               "status" => "active",
               "tournamentId" => "1"
             },
-            { "id" => "2", 
+            { "id" => "3", 
               "status" => "active",
               "tournamentId" => "1"
             }
