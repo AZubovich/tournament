@@ -9,17 +9,16 @@ module Queries
       let(:schema) { BackendSchema }
       it 'returns all users' do
         #post '/graphql', params: { query: user_tournaments_query }
-   
         schema.execute(query: tournament_games_mutation)
         temp = schema.execute(query: player_games_query)
         data = JSON.parse(temp.to_json)
         json_client = { "data" =>
           { "playerGames" => [
-            { "id" => "2",
+            { "id" => "1",
               "status" => "active",
               "tournamentId" => "1"
             },
-            { "id" => "3", 
+            { "id" => "2", 
               "status" => "active",
               "tournamentId" => "1"
             }
