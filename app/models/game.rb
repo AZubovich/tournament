@@ -26,4 +26,7 @@
 
 class Game < ApplicationRecord
   belongs_to :tournament
+  scope :first_player_games, ->(nickname) { where(first_player_name: nickname, first_player_id: nil) }
+  scope :second_player_games, ->(nickname) { where(second_player_name: nickname, second_player_id: nil) }
+  scope :active, -> { where(status: 'active') }
 end

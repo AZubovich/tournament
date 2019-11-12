@@ -4,7 +4,7 @@ module Mutations
     describe '.resolve' do
         let(:user) { create(:user) }
         let(:tournament) { create(:tournament) }
-        let(:schema) { GraphQL::BackendSchema }
+        let(:schema) { BackendSchema }
         it 'deletes a  tournament' do
           tournament.reload
           expect(Tournament.find_by(id: "1")).not_to eq(nil)

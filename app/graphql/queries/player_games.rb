@@ -10,7 +10,7 @@ module Queries
       user = Current.current_user(token)
       tour = Tournament.find_by(id: tour_id)
       player = Player.find_by(user_id: user.id, tournament_id: tour.id)
-      tour.games.where(first_player_name: player.nick_name, first_player_id: nil).or(tour.games.where(second_player_name: player.nick_name, second_player_id: nil))
+      tour.games.first_player_games(player.nick_name).or(tour.games.second_player_games(player.nick_name))
     end
   end
 end

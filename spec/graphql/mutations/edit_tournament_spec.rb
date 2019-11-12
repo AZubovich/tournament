@@ -4,7 +4,7 @@ module Mutations
     describe '.resolve' do
         let(:user) { create(:user) }
         let(:tournament) { create(:tournament) }
-        let(:schema) { GraphQL::BackendSchema }
+        let(:schema) { BackendSchema }
         it 'returns a edits tournament' do
           tournament.reload
           schema.execute(query: edit_query)

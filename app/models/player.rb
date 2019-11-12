@@ -26,4 +26,8 @@ class Player < ApplicationRecord
   belongs_to :user
   belongs_to :tournament
   validates :nick_name, presence: true
+  scope :regular_order, ->(item) { where(tournament_id: item).order(points: :desc, nick_name: :asc) }
+  scope :playoff_order, ->(item) { where(tournament_id: item).order(id: :asc) }
+  scope :playoff_final_order, ->(item) { where(tournament_id: item).order(round: :desc, nick_name: :asc) }
+  scope :on_this_round, ->(round) { where(round: round) }
 end

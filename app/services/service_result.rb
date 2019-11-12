@@ -3,12 +3,12 @@ module ServiceResult
     def send_message(user, game, total, task, eval_answer)
       if user.nick_name == game.first_player_name
         game.first_player_time += total
-        message = create_message(game.first_player_id, user, task, eval_answer)
+        game.first_player_id = user.id
       else
         game.second_player_time += total
-        message = create_message(game.second_player_id, user, task, eval_answer)
+        game.second_player_id = user.id
       end
-      message
+      create_message(task, eval_answer)
     end
 
     def give_result(game, tour)
@@ -21,9 +21,8 @@ module ServiceResult
       end
     end
 
-    def create_message(player, user, task, eval_answer)
+    def create_message(task, eval_answer)
       if eval_answer.to_s == task.answer
-        player = user.id.to_i
         message = 'Congratulations! You solve it!'
       else
         message = 'Sorry, you have a mistake'

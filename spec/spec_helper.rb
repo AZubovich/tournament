@@ -13,6 +13,8 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'coveralls'
+Coveralls.wear!
 require 'support/spec_test_helper.rb'
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

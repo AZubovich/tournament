@@ -11,11 +11,14 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'activestorage'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # Use devise for create a user model
 gem 'devise'
+#Use this gem for images
+gem 'carrierwave', '~> 2.0'
 # Use devise-jwt tokens to authentication
 gem 'devise-jwt', '~> 0.5.9'
 # gem 'mini_racer', platforms: :ruby
@@ -27,6 +30,10 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+# Add Ci integration with TravisCI
+gem 'travis'
+# Cover your test with coveralls
+gem 'coveralls', require: false
 # The ruby implementation of th GraphQL language
 gem 'graphql'
 # Use for controller tests
@@ -85,7 +92,7 @@ group :test do
   # Clean your test db
   gem 'database_cleaner'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'webdrivers', '~> 4.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

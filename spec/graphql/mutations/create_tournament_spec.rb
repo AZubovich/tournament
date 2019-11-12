@@ -1,9 +1,8 @@
 require 'rails_helper'
 module Mutations
   RSpec.describe CreateTournament, type: :request do
-    abc = GraphQL::BackendSchema
     describe '.resolve' do
-      let(:schema) { abc }
+      let(:schema) { BackendSchema }
       let(:user) { create(:user) }
         it 'creates a tournament' do
           puts "This is user id: #{user.id}"
@@ -19,17 +18,7 @@ module Mutations
           temp = schema.execute(query: second_query)
           data = JSON.parse(temp.to_json)
           json_client = { "data" =>
-            { "createTournament" => {
-              "tournament" => {
-                "id" => "2",
-                "name" => "name",
-                "description" => "description",
-                "prize" => 200,
-                "kind" => "Regular",
-                "limit" => 8,
-                "userId" => "2"
-              }
-            }
+            { "createTournament" => "OK!"
           }}
           expect(data).to eq(json_client)
 
@@ -46,17 +35,9 @@ module Mutations
             kind:"Regular"
             limit:"8"
             token:"BWiRVILcfwEzZd5TqRT848Icfw==--olkrRJ28cCmnnUUJ--ZdRQ72lboTno3Q8Ii0Npgw=="
-          ) {
-            tournament{
-              id
-              name
-              description
-              prize
-              kind
-              limit
-              userId
-            }
-            }
+            prizeWinner:"2"
+            prizeDistribution:"150,50"
+          ) 
         }
       GQL
     end
@@ -70,17 +51,9 @@ module Mutations
             kind:"Regular"
             limit:"8"
             token:"ub5H1Ca2j9iYsItSTtqZdEe+uw==--tpoNafysNBDCz1jd--KxvobYq563oFsU14W0etAg=="
-          ) {
-            tournament{
-              id
-              name
-              description
-              prize
-              kind
-              limit
-              userId
-            }
-            }
+            prizeWinner:"2"
+            prizeDistribution:"150,50"
+          )
         }
       GQL
     end

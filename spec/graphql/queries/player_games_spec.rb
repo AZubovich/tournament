@@ -6,10 +6,9 @@ module Queries
       create(:tournament_with_players)
     end
     describe '.resolve' do
-      let(:schema) { GraphQL::BackendSchema }
+      let(:schema) { BackendSchema }
       it 'returns all users' do
         #post '/graphql', params: { query: user_tournaments_query }
-   
         schema.execute(query: tournament_games_mutation)
         temp = schema.execute(query: player_games_query)
         data = JSON.parse(temp.to_json)

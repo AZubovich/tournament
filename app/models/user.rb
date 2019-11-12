@@ -6,6 +6,7 @@
 #  admin                  :boolean
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  money                  :integer
 #  nick_name              :string
 #  provider               :string
 #  remember_created_at    :datetime
@@ -30,6 +31,8 @@ class User < ApplicationRecord
 
   has_many :tournaments, dependent: :destroy
   has_many :players, dependent: :destroy
+  has_many :achievements, dependent: :destroy
   has_many :tournaments_with_players, :through => :players, :source => :tournament
   validates :nick_name, presence: true, uniqueness: true
+  scope :hall_of_fame, -> { joins(:achievements).distinct.order(money: :desc).limit(5) }
 end

@@ -1,9 +1,8 @@
 require 'rails_helper'
 module Mutations
   RSpec.describe RegisterPlayer, type: :request do
-    abc = GraphQL::BackendSchema
     describe '.resolve' do
-      let(:schema) { abc }
+      let(:schema) { BackendSchema }
       let(:user) { create(:user) }
       let(:tournament) { create(:tournament) }
         it 'creates a player' do

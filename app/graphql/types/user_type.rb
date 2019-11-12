@@ -5,6 +5,9 @@ module Types
     field :nick_name, String, null: true
     field :admin, Boolean, null: true
     field :super_admin, Boolean, null: true
+    field :money, Int, null: true
+    field :community_id, Int, null: true
     field :players, [Types::PlayerType], null: true
+    field :achievements, [Types::AchievementType], null: true
   end
 end

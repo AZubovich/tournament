@@ -6,7 +6,7 @@ module Queries
     type [Types::TournamentType], null: true
 
     def resolve(token:)
-      :: Current.current_user(token).tournaments_with_players.where.not(status: "ended").or(Current.current_user(token).tournaments_with_players.where(status: nil))
+      :: Current.current_user(token).tournaments_with_players.where.not(status: "ended").or(Current.current_user(token).tournaments_with_players.where(status: nil)).order(id: :desc)
     end
   end
 end
