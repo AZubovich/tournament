@@ -6,7 +6,7 @@ module Queries
       create(:tournament_with_games)
     end
     describe '.resolve' do
-      let(:schema) { GraphQL::BackendSchema }
+      let(:schema) { BackendSchema }
       it 'returns all users' do
         #post '/graphql', params: { query: user_tournaments_query }
         temp = schema.execute(query: first_send_mutation)
@@ -25,7 +25,7 @@ module Queries
             token:"vZX+tfA6rJbo2J8yG6OcrFuGGw==--U2l6JDjLX7SUiR7i--+X6oILQ8a+WzLKDDt3LaiA=="
             id:"1"
             answer:"5"
-            timer:1567683860236
+            timer:1572965667779
           )
         }
       GQL

@@ -1,0 +1,30 @@
+Documentation:
+    Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+  
+Metrics/ClassLength:
+    Enabled: false
+
+Style/FrozenStringLiteralComment:
+    Enabled: false
+
+Style/Documentation:
+    Enabled: false
+
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'vendor/**/*' 
+    - 'config/**/*'
+    - 'bin/**/*'
+    - 'test/test_helper.rb'
+    - 'app/models/application_record.rb'
+    - 'app/channels/**/*'
+    - 'app/helpers/**/*'
+    - 'app/controllers/application_controller.rb'
+    - 'app/jobs/**/*'
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'config.ru'

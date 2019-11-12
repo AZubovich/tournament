@@ -2,17 +2,19 @@
 #
 # Table name: tournaments
 #
-#  id          :bigint           not null, primary key
-#  description :text
-#  kind        :string
-#  limit       :integer
-#  name        :string
-#  prize       :integer
-#  round       :integer
-#  status      :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  user_id     :bigint
+#  id                 :bigint           not null, primary key
+#  description        :text
+#  kind               :string
+#  limit              :integer
+#  name               :string
+#  prize              :integer
+#  prize_distribution :string
+#  prize_winner       :integer
+#  round              :integer
+#  status             :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  user_id            :bigint
 #
 # Indexes
 #

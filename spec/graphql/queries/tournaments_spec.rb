@@ -3,11 +3,11 @@ require 'rails_helper'
 module Queries
   RSpec.describe Tournaments, type: :request do
     describe '.resolve' do
-      let(:schema) { GraphQL::BackendSchema }
+      let(:schema) { BackendSchema }
       it 'returns all users' do
         author = create(:user, email: 'first@m.ru', password: '123456', password_confirmation: '123456', nick_name: 'firstName')
 
-        tours = create(:tournament, name: 'First', description: 'First description', prize: 200, kind: 'Regular', limit: 8, user_id: author.id)
+        create(:tournament, name: 'First', description: 'First description', prize: 200, kind: 'Regular', limit: 8, user_id: author.id)
         create(:tournament, name: 'Second', description: 'Second description', prize: 300, kind: 'Play-off', limit: 4, user_id: author.id)
   
 
@@ -17,14 +17,6 @@ module Queries
         data = JSON.parse(temp.to_json)
         json_client = { "data" =>
           { "tournaments" => [
-            { "id" => "1",
-              "name" => "First",
-              "description" => "First description",
-              "prize" => 200,
-              "kind" => "Regular",
-              "limit" => 8,
-              "userId" =>"1"
-            },
             { "id" => "2", 
               "name" => "Second",
               "description" => "Second description",
@@ -32,6 +24,14 @@ module Queries
               "kind" => "Play-off",
               "limit" => 4,
               "userId" => "1"
+            } ,
+            { "id" => "1",
+              "name" => "First",
+              "description" => "First description",
+              "prize" => 200,
+              "kind" => "Regular",
+              "limit" => 8,
+              "userId" =>"1"
             }
             ]
         }}

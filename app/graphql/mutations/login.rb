@@ -22,7 +22,7 @@ module Mutations
         #context[:session][:token] = token
       end
       return nil unless is_valid_for_auth
-      { user: user, token: token }
+      { user: user, token: token}
 
     end
   end

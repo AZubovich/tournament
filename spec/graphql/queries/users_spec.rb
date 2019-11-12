@@ -3,9 +3,9 @@ require 'rails_helper'
 module Queries
   RSpec.describe Users, type: :request do
     describe '.resolve' do
-      let(:schema) { GraphQL::BackendSchema }
+      let(:schema) { BackendSchema }
       it 'returns all users' do
-        author = create(:user, email: 'first@m.ru', password: '123456', password_confirmation: '123456', nick_name: 'firstName')
+        create(:user, email: 'first@m.ru', password: '123456', password_confirmation: '123456', nick_name: 'firstName')
         create(:user, email: 'second@m.ru', password: '123456', password_confirmation: '123456', nick_name: 'secondName')
 
         #post '/graphql', params: { query: query }
