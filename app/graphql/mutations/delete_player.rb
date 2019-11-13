@@ -8,7 +8,12 @@ module Mutations
     def resolve(token:, tour_id:)
       user = Current.current_user(token)
       tour = Tournament.find_by(id: tour_id)
-      Player.find_by(user_id: user.id, tournament_id: tour.id).destroy
+      player = Player.find_by(user_id: user.id, tournament_id: tour.id)
+      bet = Bet.find_by(player_id: player.id, tournament_id: tour.id)
+      tour.prize -= bet.money
+      tour.save
+      bet.destroy
+      player.destroy
       true
     end
   end
