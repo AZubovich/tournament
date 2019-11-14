@@ -36,7 +36,7 @@ module Mutations
             limit:"8"
             token:"BWiRVILcfwEzZd5TqRT848Icfw==--olkrRJ28cCmnnUUJ--ZdRQ72lboTno3Q8Ii0Npgw=="
             prizeWinner:"2"
-            prizeDistribution:"150,50"
+            prizeDistribution:"0.15,0.85"
           ) 
         }
       GQL
@@ -52,7 +52,7 @@ module Mutations
             limit:"8"
             token:"ub5H1Ca2j9iYsItSTtqZdEe+uw==--tpoNafysNBDCz1jd--KxvobYq563oFsU14W0etAg=="
             prizeWinner:"2"
-            prizeDistribution:"150,50"
+            prizeDistribution:"0.45,0.55"
           )
         }
       GQL

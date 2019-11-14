@@ -57,7 +57,7 @@ module ServiceTour
       players = order_players(tour)
       (0..tour.prize_winner - 1).each do |i|
         user = User.find_by(id: players[i].user_id)
-        user.money += pays[i].to_i
+        user.money += (tour.prize * pays[i].to_f).to_i
         user.save
       end
     end

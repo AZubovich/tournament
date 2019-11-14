@@ -34,5 +34,5 @@ class User < ApplicationRecord
   has_many :achievements, dependent: :destroy
   has_many :tournaments_with_players, :through => :players, :source => :tournament
   validates :nick_name, presence: true, uniqueness: true
-  scope :hall_of_fame, -> { joins(:achievements).distinct.order(money: :desc).limit(5) }
+  scope :hall_of_fame, -> { joins(:achievements).distinct.order(money: :desc).limit(3) }
 end

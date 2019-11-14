@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_28_072436) do
+ActiveRecord::Schema.define(version: 2019_11_13_075157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 2019_10_28_072436) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "bets", force: :cascade do |t|
+    t.integer "money"
+    t.bigint "tournament_id"
+    t.bigint "player_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_bets_on_player_id"
+    t.index ["tournament_id"], name: "index_bets_on_tournament_id"
   end
 
   create_table "communities", force: :cascade do |t|
@@ -126,6 +136,8 @@ ActiveRecord::Schema.define(version: 2019_10_28_072436) do
 
   add_foreign_key "achievements", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bets", "players"
+  add_foreign_key "bets", "tournaments"
   add_foreign_key "games", "tournaments"
   add_foreign_key "players", "tournaments"
   add_foreign_key "players", "users"
