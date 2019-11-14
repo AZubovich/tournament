@@ -44,6 +44,7 @@ module Mutations
           registerPlayer(
             token:"BBvAFIdv3LcCy5yBUgo+qkSa2A==--Dz1N+hQh9lHy4yTp--HUuzauY9BH+WBXK/22eZRw=="
             tourId:"1"
+            money:"300"
           ) {
             player{
               id
@@ -62,6 +63,7 @@ module Mutations
           registerPlayer(
             token:"OA5UZiSrOF4EgBEnHILn/JTcVg==--uQ1qQCPkrojRAxgM--YHkvBJvJ+G1CEjJRIC9zxg=="
             tourId:"2"
+            money:"300"
           ) {
             player{
               id

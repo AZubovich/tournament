@@ -1,6 +1,5 @@
 module Mutations
-  class RegisterPlayer< BaseMutation
-
+  class RegisterPlayer < BaseMutation
     argument :token, String, required: true
     argument :tour_id, ID, required: true
     argument :money, String, required: true
