@@ -18,7 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use devise for create a user model
 gem 'devise'
 #Use this gem for images
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 2.1'
 # Use devise-jwt tokens to authentication
 gem 'devise-jwt', '~> 0.5.9'
 # gem 'mini_racer', platforms: :ruby
